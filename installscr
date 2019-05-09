@@ -1,0 +1,36 @@
+#!/bin/bash
+
+INSTALL_DIR=$HOME/CCROBOT
+CURRENT_DIR=$(pwd)
+INSTALL_FILE=prod.py
+
+DoInstall()
+{
+	sudo mkdir -p $INSTALL_DIR
+	sudo cp $INSTALL_FILE $INSTALL_DIR
+}
+
+DoUninstall()
+{
+	sudo rm -rf $INSTALL_DIR
+}
+
+ShowUsage()
+{
+	echo 'Usage'
+	echo 'start -Starts program'
+	echo 'stop -Stops program'
+	echo 'install -install program'
+	echo 'uninstall -uninstall program'
+}
+
+DoStart()
+{
+	python $INSTALL_DIR/$INSTALL_FILE
+	#screen -S $udpSend -d -m python	$INSTALL_DIR/$INSTALL_FILE_S
+}
+
+DoStop()
+{
+	screen -S $SCREEN_UDP -p 0 -x quit
+}
